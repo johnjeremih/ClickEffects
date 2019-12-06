@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Click Effects Example</string>
+    <string name="click_the_button">Click the button</string>
+    <string name="clicktheheart">Click the heart</string>
+</resources>
