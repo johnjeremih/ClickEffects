@@ -11,10 +11,8 @@ import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.BounceInterpolator
 import android.view.animation.DecelerateInterpolator
 import android.view.animation.Interpolator
-import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.interpolator.view.animation.LinearOutSlowInInterpolator
 import java.util.*
