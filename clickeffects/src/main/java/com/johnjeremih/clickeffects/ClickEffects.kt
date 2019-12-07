@@ -17,6 +17,9 @@ import android.widget.ImageView
 import androidx.interpolator.view.animation.LinearOutSlowInInterpolator
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.math.abs
+import kotlin.math.cos
+import kotlin.math.sin
 
 object ClickEffects {
 
@@ -82,7 +85,7 @@ object ClickEffects {
                 v.y = origin - y
 
                 Log.d(ContentValues.TAG, "$y/$progress")
-                if (progress < 1) ClickEffects.handle.postDelayed(
+                if (progress < 1) handle.postDelayed(
                     this,
                     20
                 ) else v.y = origin
@@ -100,9 +103,9 @@ object ClickEffects {
             override fun run() {
                 val t = (System.currentTimeMillis() - start).toInt()
                 val progress = t * 1.0 / duration
-                val y = Math.abs(
+                val y = abs(
                     v.height
-                            * Math.sin(Math.PI * progress)
+                            * sin(Math.PI * progress)
                             * (1 - progress)
                 ).toFloat()
                 v.y = origin - y
@@ -112,7 +115,7 @@ object ClickEffects {
                 v.rotation = (45 * Math.sin(progress * Math.PI * 6)).toFloat()
 
                 Log.d(ContentValues.TAG, "$y/$progress")
-                if (progress < 1) ClickEffects.handle.postDelayed(
+                if (progress < 1) handle.postDelayed(
                     this,
                     10
                 ) else {
@@ -163,9 +166,9 @@ object ClickEffects {
 
         val p: AxisPoint = AxisPoint.getCenter(v)
         val points: ArrayList<AxisPoint> =
-            ArrayList<AxisPoint>()
+            ArrayList()
         for (i in 0 until particles) {
-            val point: AxisPoint =
+            val point =
                 AxisPoint()
             point.x =
                 (Math.cos(Math.PI * 2 * i / particles) * radious).toInt()
@@ -198,19 +201,19 @@ object ClickEffects {
         v: View,
         particles: Int
     ) {
-        val radious = v.width * 6 / 5
+        val radios = v.width * 6 / 5
         val ballSize = v.width / 8
         val color: Int =getRandomColor() // get a random color
 
         val p: AxisPoint =AxisPoint.getCenter(v)
         val points: ArrayList<AxisPoint> =
-            ArrayList<AxisPoint>()
+            ArrayList()
         for (i in 0 until particles) {
-            val point: AxisPoint =AxisPoint()
+            val point =AxisPoint()
             point.x =
-                (Math.cos(Math.PI * 2 * i / particles) * radious).toInt()
+                (cos(Math.PI * 2 * i / particles) * radios).toInt()
             point.y =
-                (Math.sin(Math.PI * 2 * i / particles) * radious).toInt()
+                (sin(Math.PI * 2 * i / particles) * radios).toInt()
             points.add(point)
             val iv = ImageView(context)
             (v.parent as ViewGroup).addView(iv) // add View to parent
