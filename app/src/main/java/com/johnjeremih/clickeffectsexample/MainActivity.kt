@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
             }else {
 
                 ClickEffects.animJumping(it)
-                ClickEffects.animParticalNova(baseContext,it,18)
+                ClickEffects.animParticleNova(baseContext,it,18)
 
                 isClicked = true
                 heartImageView.setImageResource(R.drawable.vector_full_heart)

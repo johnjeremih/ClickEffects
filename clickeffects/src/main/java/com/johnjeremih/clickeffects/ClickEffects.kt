@@ -69,8 +69,7 @@ object ClickEffects {
 
 
 
-    fun animJumping(v: View) {
-        val duration = 800
+    fun animJumping(v: View,duration: Int) {
         val start = System.currentTimeMillis()
         val origin = v.y
         Thread(object : Runnable {
@@ -93,8 +92,7 @@ object ClickEffects {
         }).start()
     }
 
-    fun animShaking(v: View) {
-        val duration = 1000
+    fun animShaking(v: View, duration: Int) {
         val start = System.currentTimeMillis()
         val origin = v.y
         val rotateAngle = Math.PI.toFloat() * 8
@@ -157,10 +155,10 @@ object ClickEffects {
     }
 
 
-    fun animExplosion(context: Context?, v: View) {
-        animParticalNova(context, v, 18)
+    fun animExplosion(context: Context?, v: View, duration: Int) {
+        animParticleNova(context, v, 18)
         val particles = 9
-        val radious = v.width * 8 / 5
+        val radios = v.width * 8 / 5
         val ballSize = v.width / 6
         val color: Int =getRandomColor() // get a random color
 
@@ -171,9 +169,9 @@ object ClickEffects {
             val point =
                 AxisPoint()
             point.x =
-                (Math.cos(Math.PI * 2 * i / particles) * radious).toInt()
+                (Math.cos(Math.PI * 2 * i / particles) * radios).toInt()
             point.y =
-                (Math.sin(Math.PI * 2 * i / particles) * radious).toInt()
+                (Math.sin(Math.PI * 2 * i / particles) * radios).toInt()
             points.add(point)
             val iv = ImageView(context)
             (v.parent as ViewGroup).addView(iv) // add View to parent
@@ -192,11 +190,11 @@ object ClickEffects {
             val ip: Interpolator =
                 DecelerateInterpolator()
             iv.animate().translationXBy(point.x.toFloat()).translationYBy(point.y.toFloat())
-                .scaleX(2f).scaleY(2f).setDuration(400).alpha(0f).interpolator = ip
+                .scaleX(2f).scaleY(2f).setDuration(duration.toLong()).alpha(0f).interpolator = ip
         }
     }
 
-    fun animParticalNova(
+    fun animParticleNova(
         context: Context?,
         v: View,
         particles: Int
